@@ -1,7 +1,8 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -17,9 +18,18 @@ public class StrangeAWSListDeserializer extends StdDeserializer<Object> {
   }
 
   @Override
-  public Object deserialize(final JsonParser p, final DeserializationContext ctxt) throws IOException, JsonProcessingException {
-    final JsonNode node = p.getCodec().readTree(p);
-    // TODO: hier fehlt noch was ;)
-    return node;
+  public Object deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext) throws IOException {
+    final List<List<String>> result = new ArrayList<>();
+    final JsonNode outerList = jsonParser.getCodec().readTree(jsonParser);
+    outerList.forEach(innerList -> {
+      final List<String> interimResult = new ArrayList<>();
+      innerList.forEach(innerListEntry -> {
+        if (innerListEntry.isTextual()) {
+          interimResult.add(innerListEntry.toString());
+        }
+      });
+      result.add(interimResult);
+    });
+    return result;
   }
 }
