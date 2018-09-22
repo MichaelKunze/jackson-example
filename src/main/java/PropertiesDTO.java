@@ -1,14 +1,17 @@
-import java.util.List;
-
 public class PropertiesDTO extends BaseDTO {
 
-    PropertyDTO properties;
+  private PropertyDTO properties;
 
-    public PropertyDTO getProperties() {
-        return properties;
-    }
+  public PropertyDTO getProperties() {
+    return properties;
+  }
 
-    public void setProperties(PropertyDTO properties) {
-        this.properties = properties;
-    }
+  public void setProperties(final PropertyDTO properties) {
+    this.properties = properties;
+  }
+
+  @Override
+  public String toString() {
+    return "PropertiesDTO{" + "properties=" + properties + '}';
+  }
 }
