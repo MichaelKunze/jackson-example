@@ -1,14 +1,19 @@
 import java.util.List;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 public class PropertyDTO extends BaseDTO {
 
   private int period;
   private String stat;
   private String view;
-  @JsonDeserialize(using = StrangeAWSListDeserializer.class)
-  private List<List<String>> metrics;
+  private List<MetricsDTO> metrics;
+
+  public List<MetricsDTO> getMetrics() {
+      return metrics;
+  }
+
+  public void setMetrics(final List<MetricsDTO> metrics) {
+      this.metrics = metrics;
+  }
 
   public int getPeriod() {
     return period;
@@ -32,14 +37,6 @@ public class PropertyDTO extends BaseDTO {
 
   public void setView(final String view) {
     this.view = view;
-  }
-
-  public List<List<String>> getMetrics() {
-    return metrics;
-  }
-
-  public void setMetrics(final List<List<String>> metrics) {
-    this.metrics = metrics;
   }
 
   @Override
