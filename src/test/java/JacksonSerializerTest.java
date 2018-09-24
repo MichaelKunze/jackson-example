@@ -16,17 +16,14 @@ public class JacksonSerializerTest {
 
     // given
     final ObjectMapper mapper = new ObjectMapper();
-    final String json = FileUtils.readFileToString(new File(getClass().getClassLoader().getResource("dashboard.json").getFile()),
-      "UTF-8");
-
-    System.out.println(json);
+    final String json = FileUtils.readFileToString(
+            new File(getClass().getClassLoader().getResource("dashboard.json").getFile()), "UTF-8");
 
     // when
     final PropertiesDTO properties = mapper.readValue(json, PropertiesDTO.class);
-    System.out.println(properties);
     final String result = mapper.writeValueAsString(properties);
 
-    //then
+    // then
     assertThat(result, is(json));
   }
 }
