@@ -1,1 +1,1 @@
-{"properties":{"period":86400,"stat":"Average","view":"singleValue","metrics":[["StringA","StringB",{"label":"somelabel"}],["StringC","StringD","StringE",{"label":"someotherlabel"}]]}}
+{"properties":{"period":86400,"stat":"Average","view":"singleValue","metrics":[["StringA","StringB"],["StringC","StringD","StringE",{"label":"someotherlabel"}]]}}
