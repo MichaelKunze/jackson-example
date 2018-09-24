@@ -42,9 +42,7 @@ public class MetricsDTODeserializer extends StdDeserializer<MetricsDTO> {
                 item.setValue(value);
                 items.add(item);
             } else if (currentToken == JsonToken.START_OBJECT) {
-                final JsonNode unknownObject = jp.getCodec().readTree(jp);
-                final MetricItemDTO item = new MetricItemDTO();
-                item.setUnknownProperties((Map<String, Object>) mapper.convertValue(unknownObject, Map.class));
+                final MetricItemDTO item = jp.readValueAs(MetricItemDTO.class);
                 items.add(item);
             } else {
                 throw new JsonParseException(jp, "expected String or Object");
